@@ -21,8 +21,13 @@ const getSpecificProduct = async (_id: string) => {
 
 // update specific product services
 const updateSpecificProduct = async (_id: string, updateData: object) => {
-  console.log({ _id });
   const result = await ProductModel.updateOne({ _id }, { $set: updateData });
+  return result;
+};
+
+// delete specific product services
+const deleteSpecificProduct = async (_id: string) => {
+  const result = await ProductModel.deleteOne({ _id });
   return result;
 };
 
@@ -31,4 +36,5 @@ export const productServices = {
   getAllProducts,
   getSpecificProduct,
   updateSpecificProduct,
+  deleteSpecificProduct,
 };
