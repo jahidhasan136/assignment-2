@@ -2,39 +2,42 @@ import { IProduct } from './product.interface';
 import { ProductModel } from './product.model';
 
 // create products services
-const createProduct = async (product: IProduct) => {
+const createProductService = async (product: IProduct) => {
   const result = await ProductModel.create(product);
   return result;
 };
 
 // get all products services
-const getAllProducts = async () => {
+const getAllProductService = async () => {
   const result = await ProductModel.find();
   return result;
 };
 
 // get a specific product services
-const getSpecificProduct = async (_id: string) => {
+const getSpecificProductService = async (_id: string) => {
   const result = await ProductModel.findOne({ _id });
   return result;
 };
 
 // update specific product services
-const updateSpecificProduct = async (_id: string, updateData: object) => {
+const updateSpecificProductService = async (
+  _id: string,
+  updateData: object,
+) => {
   const result = await ProductModel.updateOne({ _id }, { $set: updateData });
   return result;
 };
 
 // delete specific product services
-const deleteSpecificProduct = async (_id: string) => {
+const deleteSpecificProductService = async (_id: string) => {
   const result = await ProductModel.deleteOne({ _id });
   return result;
 };
 
 export const productServices = {
-  createProduct,
-  getAllProducts,
-  getSpecificProduct,
-  updateSpecificProduct,
-  deleteSpecificProduct,
+  createProductService,
+  getAllProductService,
+  getSpecificProductService,
+  updateSpecificProductService,
+  deleteSpecificProductService,
 };

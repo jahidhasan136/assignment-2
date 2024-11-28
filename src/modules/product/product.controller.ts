@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import { productServices } from './product.service';
+import config from '../../config';
 
 // create products controller
 const createProduct = async (req: Request, res: Response) => {
   try {
     const product = req.body;
-    const result = await productServices.createProduct(product);
+    const result = await productServices.createProductService(product);
 
     res.status(200).json({
       success: true,
@@ -13,6 +14,7 @@ const createProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       success: false,
       message: 'Something went wrong',
@@ -25,7 +27,7 @@ const createProduct = async (req: Request, res: Response) => {
 
 const getAllProducts = async (req: Request, res: Response) => {
   try {
-    const result = await productServices.getAllProducts();
+    const result = await productServices.getAllProductService();
 
     res.status(200).json({
       success: true,
@@ -45,7 +47,7 @@ const getAllProducts = async (req: Request, res: Response) => {
 const getSpecificProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
-    const result = await productServices.getSpecificProduct(productId);
+    const result = await productServices.getSpecificProductService(productId);
 
     res.status(200).json({
       success: true,
@@ -66,7 +68,7 @@ const updateSpecificProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
     const updateData = req.body;
-    const result = await productServices.updateSpecificProduct(
+    const result = await productServices.updateSpecificProductService(
       productId,
       updateData,
     );
@@ -89,7 +91,8 @@ const updateSpecificProduct = async (req: Request, res: Response) => {
 const deleteSpecificProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
-    const result = await productServices.deleteSpecificProduct(productId);
+    const result =
+      await productServices.deleteSpecificProductService(productId);
 
     res.status(200).json({
       success: true,
